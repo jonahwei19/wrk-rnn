@@ -2,16 +2,20 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Home, Matches, Messages, Profile } from "./screens";
+import { Home, Matches, Messages, Profile, LoginScreen } from "./screens";
 import { PRIMARY_COLOR, DARK_GRAY, BLACK, WHITE } from "./assets/styles";
 import TabBarIcon from "./components/TabBarIcon";
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => (
   <NavigationContainer>
     <Stack.Navigator>
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false, animationEnabled: false }}
+      />
       <Stack.Screen
         name="Tab"
         options={{ headerShown: false, animationEnabled: false }}
