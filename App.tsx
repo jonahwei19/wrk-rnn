@@ -17,7 +17,7 @@ const App = () => (
         options={{ headerShown: false, animationEnabled: false }}
       />
       <Stack.Screen
-        name="Tab"
+        name="App"
         options={{ headerShown: false, animationEnabled: false }}
       >
         {() => (
