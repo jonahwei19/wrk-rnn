@@ -6,13 +6,7 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Do some validation here, for example, check if username or password is empty.
-    if (username === '' || password === '') {
-      Alert.alert('Error', 'Username or Password cannot be empty');
-      return;
-    }
-    // Implement your own login logic here.
-    Alert.alert('Success', `Hello ${username}`);
+       navigation.navigate('App');
   };
 
   return (
