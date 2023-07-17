@@ -1,60 +1,40 @@
 import React, { useState } from 'react';
-import { auth } from './firebase';
+import LandingPage from './screens/LandingPage';
+import MatchesPage from './screens/MatchesPage';
+import ProfilePage from './screens/ProfilePage';
+import LoginPage from './screens/LoginPage';
+import './App.css';
 
 const App = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleLogin = async () => {
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
-  const handleRegister = async () => {
-    try {
-      await auth.createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p>{error}</p>}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Login</button>
-
-      <h2>Register</h2>
-      {error && <p>{error}</p>}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleRegister}>Register</button>
+    <div className="App">
+      <div className="column">
+        {/* Your existing code for the first column */}
+        <LandingPage />
+      </div>
+      <div className="column">
+        {/* Your existing code for the second column */}
+        <MatchesPage />
+      </div>
+      <div className="column">
+        {/* Your existing code for the third column */}
+        <ProfilePage />
+      </div>
+      <div className="column">
+        {/* Implement the fifth column */}
+        {loggedIn ? (
+          <form>
+            {/* Render your Formidable form here */}
+          </form>
+        ) : (
+          <LoginPage setLoggedIn={setLoggedIn} />
+        )}
+      </div>
+      <div className="column">
+        {/* Your existing code for the fourth column */}
+      </div>
     </div>
   );
 };
