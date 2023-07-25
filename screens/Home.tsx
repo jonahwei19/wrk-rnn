@@ -30,6 +30,7 @@ const Home = () => {
               <CardItem
                 hasActions
                 image={item.image}
+
                 name={item.name}
                 description={item.description}
                 matches={item.match}
