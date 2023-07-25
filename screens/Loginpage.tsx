@@ -1,17 +1,34 @@
 import React, { useContext, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { UserContext } from '../UserContext';
+import { MatchContext, UserContext } from '../UserContext';
 
 
 const LoginPage = ({ setLoggedIn }: { setLoggedIn: (loggedIn: boolean) => void }) => {
   const { setUser } = useContext(UserContext);
+  const { setMatches } = useContext(MatchContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
   const handleLogin = (e: React.FormEvent) => {
+    fetch('https://eoqey8dvprzk3ky.m.pipedream.net', {method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(response => response.json())
+  .then(data => {
+    console.log(data);
+    e.preventDefault();
+    setMatches(data); // Set the user data
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+
+  });
+
+
     fetch('https://eo1esksf2jpvc0b.m.pipedream.net?user='+email+'&password='+password, {
       method: 'GET',
       headers: {

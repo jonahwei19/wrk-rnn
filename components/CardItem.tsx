@@ -9,70 +9,53 @@ import styles, {
   STAR_ACTIONS,
   WHITE,
 } from "../assets/styles";
+import IMAGE_04 from "../assets/images/04.jpg";
 
-const CardItem = ({
-  description,
-  hasActions,
-  hasVariant,
-  image,
-  isOnline,
-  matches,
-  name,
-}: CardItemT) => {
+const CardItem = (
+  thing) => {
   // Custom styling
   const fullWidth = Dimensions.get("window").width;
 
   const imageStyle = [
     {
       borderRadius: 8,
-      width: hasVariant ? fullWidth / 2 - 30 : fullWidth - 80,
-      height: hasVariant ? 170 : 350,
-      margin: hasVariant ? 0 : 20,
+      width: false ? fullWidth / 2 - 30 : fullWidth - 80,
+      height: false ? 170 : 350,
+      margin: false ? 0 : 20,
+    },
+  ];
+  const nameStyle = [
+    {
+      paddingTop: false ? 10 : 15,
+      paddingBottom: false ? 5 : 7,
+      color: "#363636",
+      fontSize: false ? 15 : 30,
     },
   ];
 
-  const nameStyle = [
+  const BOTTOM = [
     {
-      paddingTop: hasVariant ? 10 : 15,
-      paddingBottom: hasVariant ? 5 : 7,
+      marginTop: 80,
+      paddingTop: false ? 10 : 15,
+      paddingBottom: false ? 5 : 7,
+      marginBottom: 180,
       color: "#363636",
-      fontSize: hasVariant ? 15 : 30,
     },
   ];
 
   return (
     <View style={styles.containerCardItem}>
       {/* IMAGE */}
-
+      <Image source={IMAGE_04} style={imageStyle} />
+      <Text>{thing.InvestSize1}</Text>
       {/* MATCHES */}
-      {matches && (
-        <View style={styles.matchesCardItem}>
-          <Text style={styles.matchesTextCardItem}>
-            <Icon name="heart" color={WHITE} size={13} /> {matches}% Match!
-          </Text>
-        </View>
-      )}
+      
 
       {/* NAME */}
-      <Text style={nameStyle}>{name}</Text>
-
-      {/* DESCRIPTION */}
-      {description && (
-        <Text style={styles.descriptionCardItem}>{description}</Text>
-      )}
-
-      {/* STATUS */}
-      {!description && (
-        <View style={styles.status}>
-          <View style={isOnline ? styles.online : styles.offline} />
-          <Text style={styles.statusText}>
-            {isOnline ? "Online" : "Offline"}
-          </Text>
-        </View>
-      )}
+      <Text style={nameStyle}>{thing.CompanyName}</Text>
+      <Text style={styles.descriptionCardItem}>{thing.LendingType}</Text>
 
       {/* ACTIONS */}
-      {hasActions && (
         <View style={styles.actionsCardItem}>
           <TouchableOpacity style={styles.miniButton}>
             <Icon name="star" color={STAR_ACTIONS} size={14} />
@@ -90,7 +73,6 @@ const CardItem = ({
             <Icon name="flash" color={FLASH_ACTIONS} size={14} />
           </TouchableOpacity>
         </View>
-      )}
     </View>
   );
 };

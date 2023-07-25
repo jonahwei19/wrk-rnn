@@ -5,15 +5,18 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home, Matches, Messages, Profile, LoginPage,SignUpPage,Survey } from "./screens";
 import { PRIMARY_COLOR, DARK_GRAY, BLACK, WHITE } from "./assets/styles";
 import TabBarIcon from "./components/TabBarIcon";
+import { MatchContext, UserContext } from './UserContext';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-import { UserContext } from './UserContext';
 
+ 
 const App = () => { 
   const [user, setUser] = useState(null);
+  const [matches, setMatches] = useState(null);
 
   return(
     <UserContext.Provider value={{ user, setUser }}>
+    <MatchContext.Provider value={{ matches, setMatches }}>
 
   <NavigationContainer>
     <Stack.Navigator>
@@ -51,7 +54,7 @@ const App = () => {
                 tabBarIcon: ({ focused }) => (
                   <TabBarIcon
                     focused={focused}
-                    iconName="ellipsis"
+                    iconName="search"
                     text="Sign Up"
                   />
                 ),
@@ -65,7 +68,7 @@ const App = () => {
                 tabBarIcon: ({ focused }) => (
                   <TabBarIcon
                     focused={focused}
-                    iconName="wrench"
+                    iconName="search"
                     text="Sign In"
                   />
                 ),
@@ -169,6 +172,8 @@ const App = () => {
       </Stack.Screen>
     </Stack.Navigator>
   </NavigationContainer>
+  
+  </MatchContext.Provider>
   </UserContext.Provider>
 );
             }

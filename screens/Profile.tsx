@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   ScrollView,
   View,
@@ -9,8 +9,13 @@ import {
 import { Icon, ProfileItem } from "../components";
 import DEMO from "../assets/data/demo";
 import styles, { WHITE } from "../assets/styles";
+import { UserContext } from '../UserContext';
 
 const Profile = () => {
+
+  const { user } = useContext(UserContext);
+  console.log(user);
+
   const {
     age,
     image,
@@ -52,14 +57,6 @@ const Profile = () => {
         </ImageBackground>
 
         <ProfileItem
-          matches={match}
-          name={name}
-          age={age}
-          location={location}
-          info1={info1}
-          info2={info2}
-          info3={info3}
-          info4={info4}
         />
 
         <View style={styles.actionsProfile}>
@@ -68,8 +65,7 @@ const Profile = () => {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.roundedButton}>
-            <Icon name="chatbubble" size={20} color={WHITE} />
-            <Text style={styles.textButton}>Start chatting</Text>
+            <Text style={styles.textButton}>Update profile</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
