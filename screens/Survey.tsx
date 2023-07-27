@@ -15,7 +15,7 @@ const Chat = () => {
   // You can put your existing state and functions here...
 
   return (
-    <div style={styles.container}>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
       <iframe src="https://jonahwei19-investormatch-streamlit-app-lipv2u.streamlit.app/" width="100%" height="500px"></iframe>
       {/* ... your existing code ... */}
     </div>
@@ -23,5 +23,3 @@ const Chat = () => {
 };
 
 export default Chat;
-
-// ... your existing code ...
