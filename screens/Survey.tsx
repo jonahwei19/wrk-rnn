@@ -5,7 +5,7 @@ import axios from 'axios';
 const openai = axios.create({
   baseURL: 'https://api.openai.com/v1',
   headers: {
-    'Authorization': `Bearer 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`,
+    'Authorization': `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`,
     'Content-Type': 'application/json'
   }
 });
