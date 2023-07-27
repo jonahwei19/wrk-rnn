@@ -1,18 +1,11 @@
 import React, { useContext } from "react";
-import {
-  ScrollView,
-  View,
-  Text,
-  ImageBackground,
-  TouchableOpacity,
-} from "react-native";
+import { ScrollView, View, Text, ImageBackground, TouchableOpacity, Linking } from "react-native";
 import { Icon, ProfileItem } from "../components";
 import DEMO from "../assets/data/demo";
 import styles, { WHITE } from "../assets/styles";
 import { CombinedContext } from '../CombinedContextType';
 
 const Profile = () => {
-
   const context = useContext(CombinedContext);
   const { user, match } = context;
 
@@ -21,6 +14,11 @@ const Profile = () => {
     image,
     name,
   } = DEMO[7];
+
+  const handleUpdateProfile = () => {
+    // Open the specified URL in the device's default browser
+    Linking.openURL("https://jonahwei19-investormatch-streamlit-app-lipv2u.streamlit.app/");
+  };
 
   return (
     <ImageBackground
@@ -50,15 +48,17 @@ const Profile = () => {
           </View>
         </ImageBackground>
 
-        <ProfileItem
-        />
+        <ProfileItem />
 
         <View style={styles.actionsProfile}>
           <TouchableOpacity style={styles.circledButton}>
             <Icon name="ellipsis-horizontal" size={20} color={WHITE} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.roundedButton}>
+          <TouchableOpacity
+            style={styles.roundedButton}
+            onPress={handleUpdateProfile} // Call the handleUpdateProfile function on button press
+          >
             <Text style={styles.textButton}>Update profile</Text>
           </TouchableOpacity>
         </View>
