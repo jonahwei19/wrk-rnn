@@ -187,7 +187,7 @@ const Survey = () => {
   answers: ['US', 'Canada', 'UK', 'France', 'Germany', 'Italy', 'Spain', 'Switzerland', '-', 'China', 'Japan', 'Hong Kong', '-', 'Israel', '-', 'Global', 'Africa', 'Asia', 'Australia', 'CentralAmerica', 'Europe', 'MiddleEast', 'SouthAmerica', '-', 'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Anguilla', 'Antigua & Barbuda', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia & Herzegovina', 'Botswana', 'Brazil', 'Brunei Darussalam', 'Bulgaria', 'Burkina Faso', 'Myanmar/Burma', 'Burundi', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde', 'Cayman Islands', 'Central African Republic', 'Chad', 'Chile', 'Colombia', 'Comoros', 'Congo', 'Costa Rica', 'Croatia', 'Cuba', 'Cyprus', 'Czech Republic', 'Democratic Republic of the Congo', 'Denmark', 'Djibouti', 'Dominican Republic', 'Dominica', 'Ecuador', 'Egypt', 'El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia', 'Ethiopia', 'Fiji', 'Finland', 'French Guiana', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Greece', 'Grenada', 'Guadeloupe', 'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti', 'Honduras', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Isle of Man', 'Italy', 'Ivory Coast', 'Jamaica', 'Jordan', 'Kazakhstan', 'Kenya', 'Kosovo', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Republic of Macedonia', 'Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta', 'Martinique', 'Mauritania', 'Mauritius', 'Mayotte', 'Mexico', 'Moldova, Republic of', 'Monaco', 'Mongolia', 'Montenegro', 'Montserrat', 'Morocco', 'Mozambique', 'Namibia', 'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria', 'Niue', 'North Korea', 'Norway', 'Oman', 'Pacific Islands', 'Pakistan', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland', 'Portugal', 'Puerto Rico', 'Qatar', 'Reunion', 'Romania', 'Russia', 'Rwanda', 'Saint Kitts and Nevis', 'Saint Lucia', 'Saint Vincent\'s & Grenadines', 'Samoa', 'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leone', 'Singapore', 'Slovak Republic (Slovakia)', 'Slovenia', 'Solomon Islands', 'Somalia', 'South Africa', 'Korea, Republic of (South Korea)', 'South Sudan', 'Spain', 'Sri Lanka', 'Sudan', 'Suriname', 'Swaziland', 'Sweden', 'Switzerland', 'Syria', 'Tajikistan', 'Tanzania', 'Thailand', 'Timor Leste', 'Togo', 'Trinidad & Tobago', 'Tunisia', 'Turkey', 'Turkmenistan', 'Turks & Caicos Islands', 'Uganda', 'Ukraine', 'United Arab Emirates', 'Uruguay', 'Uzbekistan', 'Venezuela', 'Vietnam', 'Virgin Islands (UK)', 'Virgin Islands (US)', 'Yemen', 'Zambia', 'Zimbabwe', 'Taiwan', 'Tokyo', 'South Korea', 'United Arab Emirates'],
   nextStep: () => 92, // Assuming the next question is 92
 },
-
+    
 // ... Previous questions ...
 
 92: {
@@ -281,7 +281,7 @@ const Survey = () => {
   answers: ['2nd Lien', 'Bridge Loans', 'DIPLoans', 'Hard Money Lending', 'LeveragedLoans', 'Merchant Cash Advance', 'Mezzanine Financing', 'MiddleMarketLending', 'ResidualLoans(ISOs)', 'Subordinated Loans', 'Unitranche', 'Venture Capital Loans'],
   nextStep: () => 290,
 },   
-
+    
 230: {
   question: 'What industries?* (choose one or more)',
   answers: ['Business Services', 'Consumer Services', 'Communications/Media', 'Construction', 'Consumer/Retail', 'Ecommerce', 'Financial Services', 'FinTech', 'Government/Contracting', 'Healthcare', 'Industrial/Manufacturing', 'Infrastructure', 'Real Assets', 'Recreation', 'Technology', 'Transportation/Warehousing'],
@@ -478,7 +478,10 @@ const Survey = () => {
     </View>
   );
 };
-	@@ -485,16 +52,12 @@ const styles = StyleSheet.create({
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
