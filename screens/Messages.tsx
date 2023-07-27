@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   ScrollView,
   Text,
@@ -8,37 +8,68 @@ import {
   FlatList,
 } from "react-native";
 import { Icon, Message } from "../components";
-import DEMO from "../assets/data/demo";
 import styles, { DARK_GRAY } from "../assets/styles";
+import { CombinedContext } from "../CombinedContextType";
+import ChatWindow from "../components/ChatWindow";
 
-const Messages = () => (
-  <ImageBackground
-    source={require("../assets/images/bg.png")}
-    style={styles.bg}
-  >
-    <View style={styles.containerMessages}>
-      <View style={styles.top}>
-        <Text style={styles.title}>Messages</Text>
-        <TouchableOpacity>
-          <Icon name="ellipsis-vertical" color={DARK_GRAY} size={20} />
-        </TouchableOpacity>
-      </View>
+const Messages = () => {
 
-      <FlatList
-        data={DEMO}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
+const context = useContext(CombinedContext);
+if (!context) {
+  throw new Error('SomeComponent must be used within a CombinedContextProvider');
+}
+const { user, setUser, match, setMatch, myMatches, setMyMatches } = context;
+
+const [selectedMessage, setSelectedMessage] = useState(null);
+
+const fakeChatData = [
+  { sender: 'user', text: 'Hello!' },
+  { sender: 'match', text: 'Hi there!' },
+  { sender: 'user', text: 'Hello!' },
+  { sender: 'match', text: 'Hi there!' },
+  { sender: 'user', text: 'Hello!' },
+  { sender: 'match', text: 'Hi there!' },
+  { sender: 'user', text: 'Hello!' },
+  { sender: 'match', text: 'Hi there!' },
+  { sender: 'user', text: 'Hello!' },
+  { sender: 'match', text: 'Hi there!' },
+  
+  // Add more fake data here
+];
+
+  return (
+    <ImageBackground
+      source={require("../assets/images/bg.png")}
+      style={styles.bg}
+    >
+      <View style={styles.containerMessages}>
+        <View style={styles.top}>
+          <Text style={styles.title}>Messages</Text>
           <TouchableOpacity>
-            <Message
-              image={item.image}
-              name={item.name}
-              lastMessage={item.message}
-            />
+            <Icon name="ellipsis-vertical" color={DARK_GRAY} size={20} />
           </TouchableOpacity>
+        </View>
+
+        {selectedMessage ? (
+          <ChatWindow
+            messages={fakeChatData}
+            onBack={() => setSelectedMessage(null)}
+          />
+        ) : (
+          <FlatList
+            data={myMatches}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => setSelectedMessage(item)}>
+                <Message
+                  name={item.FirstLastName} />
+              </TouchableOpacity>
+            )} />
         )}
-      />
-    </View>
-  </ImageBackground>
-);
+      </View>
+    </ImageBackground>
+  );
+};
 
 export default Messages;
+

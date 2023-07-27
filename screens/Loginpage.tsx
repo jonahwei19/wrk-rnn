@@ -16,49 +16,70 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
+  let tempId = 0;
+
   const handleLogin = (e: React.FormEvent) => {
-    fetch('https://eoqey8dvprzk3ky.m.pipedream.net', {method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then(response => response.json())
-  .then(data => {
-    console.log(data);
-    e.preventDefault();
-    setMatch(data);
-    console.log(match); // Set the user data
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-
-  });
+   
 
 
-    fetch('https://eo1esksf2jpvc0b.m.pipedream.net?user='+email+'&password='+password, {
+
+
+
+    fetch('https://eo1esksf2jpvc0b.m.pipedream.net/?user=' + email + '&password=' + password, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      e.preventDefault();
-      setUser(data);
-      console.log(user); // Set the user data
-      navigation.navigate('App');
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      navigation.navigate('App');
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        tempId = data.index;
+        fetch('https://eoqey8dvprzk3ky.m.pipedream.net/?userId='+tempId, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }).then(response => response.json())
+          .then(data => {
+            console.log(data);
+            e.preventDefault();
+            setMatch(data);
+            console.log(match); // Set the user data
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+    
+          });
+        fetch('https://eopkg1zlglr8uzr.m.pipedream.net/?userId=' + tempId, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }).then(response => response.json())
+          .then(data => {
+            e.preventDefault();
+            setMyMatches(data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
 
-    });
+          });
+        e.preventDefault();
+        setUser(data);
+        console.log(user); // Set the user data
+        navigation.navigate('App');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+
+      });
   };
-  
+
 
   return (
     <View style={styles.container}>
-      
+
       <View style={styles.inputContainer}>
         <Text>Email:</Text>
         <TextInput

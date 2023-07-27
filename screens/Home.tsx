@@ -14,7 +14,7 @@ const Home = () => {
   if (!context) {
     throw new Error('SomeComponent must be used within a CombinedContextProvider');
   }
-  const { user, setUser, match, setMatch } = context;
+  const { user, setUser, match, setMatch, myMatches, setMyMatches } = context;
   function logMatch(match, user) {    
     
     fetch("https://eo52stvfxhyqbg7.m.pipedream.net?matchId="+user.index+"&userId="+match.index)
@@ -41,7 +41,7 @@ const Home = () => {
 
         <CardStack
           verticalSwipe={false}
-          renderNoMoreCards={() => <Card><View style={styles.containerCardItem}><b>NO MORE MATCHES</b></View></Card>}
+          renderNoMoreCards={() => <Card><View style={styles.containerCardItem}></View></Card>}
           onSwipedRight={(d) => logMatch(match[d], user)}
           ref={(newSwiper): void => setSwiper(newSwiper)}
         >
