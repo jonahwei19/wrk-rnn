@@ -3,6 +3,15 @@ import { View, Text, Button, TextInput, StyleSheet } from 'react-native';
 import axios from 'axios';
 import WebView from 'react-native-webview';
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  // You can add more styles here...
+});
+
 const Chat = () => {
   // You can put your existing state and functions here...
 
