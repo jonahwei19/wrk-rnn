@@ -11,9 +11,14 @@ import styles, {
 } from "../assets/styles";
 import IMAGE_04 from "../assets/images/04.jpg";
 
-const CardItem = (
-  thing) => {
-  // Custom styling
+
+  // rest of your code
+
+const CardItem = (thing) => {
+
+  console.log(thing);
+  thing = thing.thing
+    // Custom styling
   const fullWidth = Dimensions.get("window").width;
 
   const imageStyle = [
@@ -43,16 +48,22 @@ const CardItem = (
     },
   ];
 
+  let random = Math.random();
+
   return (
     <View style={styles.containerCardItem}>
       {/* IMAGE */}
-      <Image source={IMAGE_04} style={imageStyle} />
-      <Text>{thing.InvestSize1}</Text>
+      <Image source={{
+          uri: 'https://thispersondoesnotexist.com/?d='+(random*100).toString()}
+       } style={imageStyle} 
+       blurRadius={20}/>
+      <Text style={styles.descriptionCardItem}>{thing.CompanyName}</Text>
+
       {/* MATCHES */}
       
 
       {/* NAME */}
-      <Text style={nameStyle}>{thing.CompanyName}</Text>
+      <Text style={nameStyle}>{thing.FirstName}</Text>
       <Text style={styles.descriptionCardItem}>{thing.LendingType}</Text>
 
       {/* ACTIONS */}

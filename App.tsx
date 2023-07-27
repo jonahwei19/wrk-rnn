@@ -5,19 +5,19 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home, Matches, Messages, Profile, LoginPage,SignUpPage,Survey } from "./screens";
 import { PRIMARY_COLOR, DARK_GRAY, BLACK, WHITE } from "./assets/styles";
 import TabBarIcon from "./components/TabBarIcon";
-import { MatchContext, UserContext } from './UserContext';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
  
-const App = () => { 
+import { CombinedContext }  from './CombinedContextType';
+
+const App = () => {
   const [user, setUser] = useState(null);
-  const [matches, setMatches] = useState(null);
+  const [match, setMatch] = useState(null);
+  const [myMatches, setMyMatches] = useState(null);
 
-  return(
-    <UserContext.Provider value={{ user, setUser }}>
-    <MatchContext.Provider value={{ matches, setMatches }}>
-
+  return (
+    <CombinedContext.Provider value={{ user, match, myMatches, setMatch, setUser, setMyMatches }}>
   <NavigationContainer>
     <Stack.Navigator>
       
@@ -173,9 +173,8 @@ const App = () => {
     </Stack.Navigator>
   </NavigationContainer>
   
-  </MatchContext.Provider>
-  </UserContext.Provider>
-);
-            }
+  </CombinedContext.Provider>
+  );
+};
 
 export default App;

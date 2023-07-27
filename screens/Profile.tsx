@@ -9,22 +9,16 @@ import {
 import { Icon, ProfileItem } from "../components";
 import DEMO from "../assets/data/demo";
 import styles, { WHITE } from "../assets/styles";
-import { UserContext } from '../UserContext';
+import { CombinedContext } from '../CombinedContextType';
 
 const Profile = () => {
 
-  const { user } = useContext(UserContext);
-  console.log(user);
+  const context = useContext(CombinedContext);
+  const { user, match } = context;
 
   const {
     age,
     image,
-    info1,
-    info2,
-    info3,
-    info4,
-    location,
-    match,
     name,
   } = DEMO[7];
 

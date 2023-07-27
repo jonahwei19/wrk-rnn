@@ -3,11 +3,17 @@ import { Text, View } from "react-native";
 import Icon from "./Icon";
 import { ProfileItemT } from "../types";
 import styles, { DARK_GRAY, WHITE } from "../assets/styles";
-import { UserContext } from '../UserContext';
+import { CombinedContext } from '../CombinedContextType';
 
 const ProfileItem = () => {
-  const { user } = useContext(UserContext);
+  const context = useContext(CombinedContext);
+  if (!context) {
+    throw new Error('SomeComponent must be used within a CombinedContextProvider');
+  }
+  const { user, match } = context;
+
 return(
+  
   <View style={styles.containerProfileItem}>
     
     <Text style={styles.name}>{user.FirstLastName}</Text>

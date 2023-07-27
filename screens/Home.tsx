@@ -1,14 +1,32 @@
-import React, { useState,useContext } from "react";
+import React, { useState,useContext, createContext } from "react";
 import { View, ImageBackground } from "react-native";
 import CardStack, { Card } from "react-native-card-stack-swiper";
 import { City, Filters, CardItem } from "../components";
 import styles from "../assets/styles";
-import DEMO from "../assets/data/demo";
-import { MatchContext } from "../UserContext";
+import { CombinedContext } from '../CombinedContextType';
+
+
 
 const Home = () => {
   const [swiper, setSwiper] = useState<CardStack | null>(null);
-  const { matches } = useContext(MatchContext);
+
+  const context = useContext(CombinedContext);
+  if (!context) {
+    throw new Error('SomeComponent must be used within a CombinedContextProvider');
+  }
+  const { user, setUser, match, setMatch } = context;
+  function logMatch(match, user) {    
+    
+    fetch("https://eo52stvfxhyqbg7.m.pipedream.net?matchId="+user.index+"&userId="+match.index)
+      .then(response => {
+        // Handle the response
+      })
+      .catch(error => {
+        // Handle the error
+      });
+  }
+  if(match){
+    
 
   return (
     <ImageBackground
@@ -22,23 +40,29 @@ const Home = () => {
         </View>
 
         <CardStack
-          loop
           verticalSwipe={false}
-          renderNoMoreCards={() => null}
+          renderNoMoreCards={() => <Card><View style={styles.containerCardItem}><b>NO MORE MATCHES</b></View></Card>}
+          onSwipedRight={(d) => logMatch(match[d], user)}
           ref={(newSwiper): void => setSwiper(newSwiper)}
         >
-          {matches.map((item) => (
-            <Card key={item.id}>
-              <CardItem
-                hasActions
-                thing={item}
-              />
-            </Card>
-          ))}
+          {match.map((item) => {
+            return (
+              <Card key={item.index}>
+                <CardItem
+                  hasActions
+                  key={item.index}
+                  thing={item} />
+              </Card>
+            );
+          })}
         </CardStack>
       </View>
     </ImageBackground>
   );
+          }  else  {
+            return ("LOADING")
+
+          }
 };
 
 export default Home;

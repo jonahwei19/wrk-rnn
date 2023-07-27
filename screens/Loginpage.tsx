@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { MatchContext, UserContext } from '../UserContext';
+import { CombinedContext } from '../CombinedContextType';
 
+const LoginPage = () => {
+  const context = useContext(CombinedContext);
 
-const LoginPage = ({ setLoggedIn }: { setLoggedIn: (loggedIn: boolean) => void }) => {
-  const { setUser } = useContext(UserContext);
-  const { setMatches } = useContext(MatchContext);
+  if (!context) {
+    throw new Error('LoginPage must be used within a CombinedContextProvider');
+  }
+
+  const { user, setUser, match, myMatches, setMatch, setMyMatches } = context;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +25,8 @@ const LoginPage = ({ setLoggedIn }: { setLoggedIn: (loggedIn: boolean) => void }
   .then(data => {
     console.log(data);
     e.preventDefault();
-    setMatches(data); // Set the user data
+    setMatch(data);
+    console.log(match); // Set the user data
   })
   .catch((error) => {
     console.error('Error:', error);
@@ -39,7 +44,8 @@ const LoginPage = ({ setLoggedIn }: { setLoggedIn: (loggedIn: boolean) => void }
     .then(data => {
       console.log(data);
       e.preventDefault();
-      setUser(data); // Set the user data
+      setUser(data);
+      console.log(user); // Set the user data
       navigation.navigate('App');
     })
     .catch((error) => {
