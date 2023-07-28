@@ -6,9 +6,11 @@ const Chat = () => {
   const [conversation, setConversation] = useState([]);
 
   const getGptResponse = async () => {
+    const newConversation = [...conversation, {role: "user", content: message}];
+
     const data = {
       model: "gpt-3.5-turbo",
-      messages: [...conversation, {role: "user", content: message}],
+      messages: newConversation,
       max_tokens: 1000,
       temperature: 0.5,
     };
@@ -23,7 +25,7 @@ const Chat = () => {
     try {
       const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', data, config);
       const gptResponse = response.data.choices[0].message.content;
-      setConversation([...conversation, {role: "assistant", content: gptResponse}]);
+      setConversation([...newConversation, {role: "assistant", content: gptResponse}]);
     } catch (error) {
       console.error(error);
     }
