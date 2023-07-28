@@ -9,7 +9,6 @@ const Chat = () => {
     const newConversation = [...conversation, {role: "user", content: message}];
 
     const data = {
-      // model: "gpt-3.5-turbo", // Remove this line
       messages: newConversation,
       max_tokens: 1000,
       temperature: 0.5,
@@ -23,7 +22,7 @@ const Chat = () => {
     };
 
     try {
-      const response = await axios.post('https://api.openai.com/v1/engines/text-davinci-003/completions', data, config);
+      const response = await axios.post('https://api.openai.com/v1/engines/gpt-3.5-turbo/completions', data, config);
       const gptResponse = response.data.choices[0].message.content;
       setConversation([...newConversation, {role: "assistant", content: gptResponse}]);
     } catch (error) {
