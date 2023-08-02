@@ -5,6 +5,7 @@ import {
   Text,
   ImageBackground,
   TouchableOpacity,
+  Linking,
 } from "react-native";
 import { Icon, ProfileItem } from "../components";
 import DEMO from "../assets/data/demo";
@@ -21,6 +22,10 @@ const Profile = () => {
     image,
     name,
   } = DEMO[7];
+
+  function handleProfileUpdate(event: GestureResponderEvent): void {
+    
+  }
 
   return (
     <ImageBackground
@@ -58,7 +63,11 @@ const Profile = () => {
             <Icon name="ellipsis-horizontal" size={20} color={WHITE} />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.roundedButton}>
+          <TouchableOpacity
+    onPress={() => {
+      Linking.openURL("https://jonahwei19-investormatch-streamlit-app-lipv2u.streamlit.app");
+    }}
+   style={styles.roundedButton} >
             <Text style={styles.textButton}>Update profile</Text>
           </TouchableOpacity>
         </View>

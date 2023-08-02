@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const SignUpPage = ({ setLoggedIn }: { setLoggedIn: (loggedIn: boolean) => void }) => {
@@ -12,7 +12,8 @@ const SignUpPage = ({ setLoggedIn }: { setLoggedIn: (loggedIn: boolean) => void 
     // Perform sign up logic here (e.g., validating credentials, creating a new user)
 
     // Once signed up, navigate to the app stack screen
-    navigation.navigate('Survey');
+    Linking.openURL("https://jonahwei19-investormatch-streamlit-app-lipv2u.streamlit.app");
+
   };
 
   return (
